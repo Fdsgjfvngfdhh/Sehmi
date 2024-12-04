@@ -1,15 +1,15 @@
 const axios = require('axios');
 
 const ArYAN = [
-  'ai',
-  '.arc',
-  '.arched',
+  'llama',
+  '.llama',
+  '/llama',
 ];
 
 module.exports = {
   config: {
-    name: 'arched',
-    aliases: ["arc"],
+    name: 'llama',
+    aliases: ["llm"],
     version: '1.0',
     author: 'ArYAN',
     role: 0,
@@ -34,13 +34,13 @@ module.exports = {
         return message.reply("Please provide a question.");
       }
 
-      const response = await axios.get(`https://c-v5.onrender.com/api/gpt?prompt=${encodeURIComponent(prompt)}`);
+      const response = await axios.get(`https://aryanchauhanapi.onrender.com/api/llama3-8b?prompt=${encodeURIComponent(prompt)}`);
 
-      if (response.status !== 200 || !response.data || !response.data.response) {
+      if (response.status !== 200 || !response.data || !response.data.answer) {
         throw new Error('Invalid or missing response from API');
       }
 
-      const messageText = response.data.response;
+      const messageText = response.data.answer;
 
       await message.reply(messageText);
 
