@@ -1,14 +1,14 @@
 const axios = require('axios');
 
 const ArYAN = [
-  '.chi',
-  '.orochi',
+  'ai',
+  '.ai',
 ];
 
 module.exports = {
   config: {
-    name: 'orochi',
-    aliases: ["chi"],
+    name: 'ai',
+    aliases: ["Ai"],
     version: '1.0',
     author: 'ArYAN',
     role: 0,
@@ -30,10 +30,10 @@ module.exports = {
       const prompt = event.body.substring(prefix.length).trim();
 
       if (!prompt) {
-        return message.reply("🤖 𝗢𝗿𝗼𝗰𝗵𝗶\n\nHello! How can I assist you today ?");
+        return message.reply("Hello! How can I assist you today ?");
       }
 
-      const response = await axios.get(`https://c-v5.onrender.com/api/orochi?prompt=${encodeURIComponent(prompt)}`);
+      const response = await axios.get(`https://aryanchauhanapi.onrender.com/gpt?prompt=${encodeURIComponent(prompt)}`);
 
       if (response.status !== 200 || !response.data || !response.data.answer) {
         throw new Error('Invalid or missing response from API');
