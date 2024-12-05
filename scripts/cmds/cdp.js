@@ -15,10 +15,10 @@ module.exports = {
 
   onStart: async function ({ api, event, args, message }) {
     try {
-        const response = await axios.get(`https://king-aryanapis.onrender.com/api/cdp`);
+        const response = await axios.get(`https://aryanchauhanapi.onrender.com/v1/cdp/get`);
         
-        if (response.data && response.data.result) {
-            const { female, male } = response.data.result;
+        if (response.data && response.data) {
+            const { female, male } = response.data;
             const images = [female, male];
 
             api.setMessageReaction("✅", event.messageID, () => {}, true);
