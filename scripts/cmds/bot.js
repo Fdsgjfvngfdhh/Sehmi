@@ -9,12 +9,11 @@ module.exports = {
         longDescription: "bot",
         category: "Fun",
         guide: {
-            vi: "{pn} text ",
-            en: "{pn} text "
+            en: "{pn} text"
         }
     },
-    onStart: async function () {},
-    onChat: async function({ message, args, event, usersData }) {
+    onStart: async () => {},
+    onChat: async function({ message, event, api }) {
         const quotes = [
             "Kya Tu ELvish Bhai Ke Aage Bolega🙄", 
             "Cameraman Jaldi Focus Kro 📸", 
@@ -68,23 +67,27 @@ module.exports = {
             "Ao kabhi haweli pe😍"
         ];
 
-        const Prefixes = ['bot', 'Bot', 'BOT'];
+        const Prefixes = ['bot', 'Bot'];
+
+        if (!event.body) return;
 
         const prefix = Prefixes.find(p => event.body.toLowerCase().startsWith(p.toLowerCase()));
         if (!prefix) return;
 
         const uid = event.senderID;
-        const name = event.userData[uid] ? event.userData[uid].name : 'User';
 
-        if (args[0] && args[0].toLowerCase() === "bot") {
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-
-            return message.reply({
-                body: `🥀 ${name} 🥀\n\n${randomQuote}`,
-                mentions: [{ id: uid, tag: name }]
-            });
+        let name = "User";
+        try {
+            const userInfo = await api.getUserInfo(uid);
+            name = userInfo[uid]?.name || "User";
+        } catch (error) {
+            console.error("Error fetching user info:", error);
         }
 
-        return;
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        return message.reply({
+            body: `🥀 ${name} 🥀\n\n${randomQuote}`,
+            mentions: [{ id: uid, tag: name }]
+        });
     }
 };
