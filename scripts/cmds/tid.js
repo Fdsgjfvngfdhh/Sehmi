@@ -1,8 +1,8 @@
 module.exports = {
   config: {
-    name: "Ntkhang",
+    name: "tid",
     version: "1.0",
-    author: "ArYAN",
+    author: "NTkhang",
     countDown: 0,
     role: 0,
     longDescription: {
