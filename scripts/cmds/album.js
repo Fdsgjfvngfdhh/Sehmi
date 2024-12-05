@@ -86,7 +86,7 @@ function getCategoryName(command) {
 
 async function fetchVideo(api, threadID, category) {
   try {
-    const response = await axios.get(`https://king-aryanapis.onrender.com/api/album?category=${encodeURIComponent(category.toLowerCase())}`);
+    const response = await axios.get(`https://aryanchauhanapi.onrender.com/api/album?category=${encodeURIComponent(category.toLowerCase())}`);
     const video = response.data;
     const videoBuffer = await axios.get(video.url, { responseType: 'arraybuffer' });
     const filename = `${category}_${Date.now()}.mp4`;
@@ -103,7 +103,7 @@ async function fetchVideo(api, threadID, category) {
 
 async function streamVideo(api, threadID, category) {
   try {
-    const response = await axios.get(`https://king-aryanapis.onrender.com/api/album?category=${encodeURIComponent(category.toLowerCase())}`);
+    const response = await axios.get(`https://aryanchauhanapi.onrender.com/api/album?category=${encodeURIComponent(category.toLowerCase())}`);
     const video = response.data;
     const videoBuffer = await axios.get(video.url, { responseType: 'arraybuffer' });
     const filename = `${category}_${Date.now()}.mp4`;
