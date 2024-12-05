@@ -68,7 +68,7 @@ module.exports = {
             "Ao kabhi haweli pe😍"
         ];
 
-        const Prefixes = ['bot'];
+        const Prefixes = ['bot', 'Bot', 'BOT'];
 
         const prefix = Prefixes.find(p => event.body.toLowerCase().startsWith(p.toLowerCase()));
         if (!prefix) return;
